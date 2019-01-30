@@ -1,13 +1,9 @@
 <?php
-
 	class HomeController extends Controller{
 		public function index(){
-			$homemodel = $this->model('HomeModel');
-			$homemodel->getTable();
-			var_dump($homemodel->getTable());die;
-			$this->view($data);
+			$model = $this->model('HomeModel');
+			$result = $model->getTable();
+			var_dump(555);
 		}
 	}
-
-
 ?>
