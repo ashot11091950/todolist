@@ -25,7 +25,23 @@
 			mysqli_set_charset($this->conn,"utf8");
 		}
 		public function insert($table, Array $data){
-
+		    $ins = "INSERT INTO $table ";
+            $set = "(";
+            $val = "(";
+            $flag = false;
+            foreach ($data as $key => $value){
+                if($flag){
+                    $set .= ', ';
+                    $val .= ', ';
+                }
+                $set .= $key;
+                $val .= $value;
+                $flag = true;
+            }
+            $set .= ")";
+            $val .= ")";
+            $ins .= $set . " VALUES " . $val;
+            $this->query($ins);
 		}
 		public function select($table,Array $data, Array $filter = null){
 			$sql = 'SELECT ';
@@ -44,7 +60,29 @@
 			}
 			return $this->query($sql);
 		}
-		public function update($table,Array $data){
+		public function update($table, Array $data, $filter = null){
+            $sql = "UPDATE $table SET ";
+            $flag = false;
+            foreach ($data as $key => $value){
+                if($flag){
+                    $sql .= ', ';
+                }
+                $sql .= $key . '='. $value;
+                $flag = true;
+            }
+            if(!is_null($filter)){
+                $sql .= " WHERE ";
+                $flag1 = false;
+                foreach ($filter as $key1 => $value1){
+                    if($flag1){
+                        $sql .= " AND ";
+                    }
+                    $sql .= $key1 . '=' . $value1;
+                    $flag1 = true;
+                }
+                return $this->query($sql);
+            }
+
 			
 		}
 		public function delete($table,Array $data){
