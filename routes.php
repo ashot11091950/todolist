@@ -1,3 +1,4 @@
 <?php
-	$route->addRoute('/home', 'HomeController@index');
+	$route->addRoute('/login', 'LoginController@index');
+	$route->addRoute('/', 'HomeController@index');
 ?>

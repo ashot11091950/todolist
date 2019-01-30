@@ -6,9 +6,16 @@
 		}
 	}
 	class Controller{
+		private $view;
 		protected function model($modelName){
 			include 'model/' . $modelName . '.php';
 			return new $modelName;
+		}
+		protected function view($filename){
+			$this->view .= file_get_contents('view/'.$filename.'.view.html');
+		}
+		protected function set_output(){
+			echo $this->view;die;
 		}
 	}
 	class DB{
@@ -63,3 +70,4 @@
 		}
 	}
 ?>
+
