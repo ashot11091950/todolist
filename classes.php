@@ -6,6 +6,10 @@
 		}
 	}
 	class Controller{
+		public $db;
+		public function __construct(){
+			$this->db = new DB;
+		}
 		private $view;
 		protected function model($modelName){
 			include 'model/' . $modelName . '.php';
@@ -35,20 +39,25 @@
                     $val .= ', ';
                 }
                 $set .= $key;
-                $val .= $value;
+                $val .= '"'.$value.'"';
                 $flag = true;
             }
             $set .= ")";
             $val .= ")";
             $ins .= $set . " VALUES " . $val;
-            $this->query($ins);
+            if($this->query($ins)){
+            	return true;
+            }else{
+            	return false;
+            }
 		}
 		public function select($table,Array $data, Array $filter = null){
 			$sql = 'SELECT ';
 			foreach ($data as $field) {
-				$sql .= $field . ' ';
+				$sql .= $field . ', ';
 			}
-			$sql .= "FROM $table";
+			$sql = rtrim($sql, ', ');
+			$sql .= " FROM $table";
 			if(!is_null($filter)){
 				$sql .= " WHERE ";
 				$flag = false;
@@ -67,7 +76,7 @@
                 if($flag){
                     $sql .= ', ';
                 }
-                $sql .= $key . '='. $value;
+                $sql .= $key . '='."'". $value."'";
                 $flag = true;
             }
             if(!is_null($filter)){
@@ -77,16 +86,28 @@
                     if($flag1){
                         $sql .= " AND ";
                     }
-                    $sql .= $key1 . '=' . $value1;
+                    $sql .= $key1 . '=' ."'".$value1."'";
                     $flag1 = true;
                 }
                 return $this->query($sql);
             }
-
-			
 		}
-		public function delete($table, Array $data){
-			
+		public function delete($table, Array $filter){
+			$sql="DELETE FROM $table WHERE ";
+			foreach ($filter as $value=>$k) {
+				$sql.=$value;
+				$sql.= " = ";
+				$sql.= "'".$k."'";
+				$sql.=" AND ";
+			}
+			$sql = rtrim($sql," AND");
+			// var_dump($sql);die;
+			if($this->query($sql)){
+				return true;
+			}else{
+				return false;
+			}
+
 		}
 		public function query(String $query){
 			$ret = mysqli_query($this->conn, $query);

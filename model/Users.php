@@ -5,4 +5,7 @@
 			$result = $this->db->select('users', ['*']);
 			return $result;
 		}
+		public function insert($table, $data){
+			$this->db->insert($table, $data);
+		}
 	}
