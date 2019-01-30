@@ -1,15 +1,16 @@
 <?php 
 	class Model{
-		public function __contruct(){
-			$con = mysqli_connect('localhost', 'root', '@,~rXtn3hU5?3sn~', 'todo_bs');
-			mysqli_set_charset($connect,"utf8");
-			return $con;
-		}
+		
 	}
 	class Controller{
 		
 	}
 	class DB{
+		public function __contruct(){
+			$con = mysqli_connect('localhost', 'root', '@,~rXtn3hU5?3sn~', 'todo_bs');
+			mysqli_set_charset($connect,"utf8");
+			return $con;
+		}
 		protected function insert($table,Array $data){
 
 		}
