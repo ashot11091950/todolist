@@ -38,9 +38,16 @@
 			return $this->query($sql);
 		}
 		public function update($table,Array $data){
-			
+
 		}
-		public function delete($table,Array $data){
+		public function delete($table,Array $data= ['usernam', 'lastname']){
+			$sql="DELETE FROM $table WHERE 'id'=";
+			foreach ($data as $value) {
+				$sql.=$value;
+				$sql.=" AND";
+			}
+			$sql = rtrim($sql," AND");
+			$this->query($sql);
 			
 		}
 		public function query(String $query){
