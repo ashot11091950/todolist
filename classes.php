@@ -85,7 +85,7 @@
 
 			
 		}
-		public function delete($table,Array $data){
+		public function delete($table, Array $data){
 			
 		}
 		public function query(String $query){
