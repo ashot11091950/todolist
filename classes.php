@@ -6,20 +6,32 @@
 		}
 	}
 	class Controller{
+		public $request;
 		public $db;
 		public function __construct(){
 			$this->db = new DB;
+			$this->request = new Request;
 		}
-		private $view;
 		protected function model($modelName){
 			include 'model/' . $modelName . '.php';
 			return new $modelName;
 		}
-		protected function view($filename){
-			$this->view .= file_get_contents('view/'.$filename.'.view.html');
-		}
-		protected function set_output(){
-			echo $this->view;die;
+		protected function view(String $filename, Array $data = null){
+            if(is_file('view/'.$filename.'.view.html')){
+                ob_start();
+                include 'view/'.$filename.'.view.html';
+                return ob_get_clean();
+            }else{
+                die("Error GetView: File view/$filename.view.html doesn't exist");
+            }
+            // $this->view .= file_get_contents('view/'.$filename.'.view.html');
+        }
+		protected function setOutput(String $filename, Array $data = null){
+			if(is_file('view/'.$filename.'.view.html')){
+                include 'view/'.$filename.'.view.html';
+            }else{
+                die("Error GetView: File view/$filename.view.html doesn't exist");
+            }
 		}
 	}
 	class DB{
@@ -109,10 +121,32 @@
 			}
 
 		}
+		public function fetchAssoc($table,Array $data, Array $filter = null){
+			$sql = 'SELECT ';
+			foreach ($data as $field) {
+				$sql .= $field . ', ';
+			}
+			$sql = rtrim($sql, ', ');
+			$sql .= " FROM $table";
+			if(!is_null($filter)){
+				$sql .= " WHERE ";
+				$flag = false;
+				foreach ($filter as $key => $value) {
+					if($flag) $sql .= " AND ";
+					$sql .= $key . '=' . $value;
+					$flag = true;
+				}
+			}
+			while($row = mysqli_fetch_assoc($this->query($sql))){
+				$rows[] = $row;
+			}
+			var_dump($rows);die;
+			return mysqli_fetch_assoc($this->query($sql));
+		}
 		public function query(String $query){
 			$ret = mysqli_query($this->conn, $query);
 			return $ret;
-		} 
+		}
 	}
 	class Route{
 		private $routes = array();
@@ -126,6 +160,18 @@
 					return [$route['controller'], $route['function']];
 				}
 			}
+		}
+	}
+
+	class Request{
+		public $post;
+		public $get;
+		public function __construct(){
+			$this->post = $_POST;
+			$this->get = $_GET;
+		}
+		public function method(){
+			return $_SERVER['REQUEST_METHOD'];
 		}
 	}
 ?>
