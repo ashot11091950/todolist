@@ -1,2 +1,3 @@
 RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/(public/.*)$
 RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
