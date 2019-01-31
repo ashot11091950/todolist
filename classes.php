@@ -1,10 +1,12 @@
 <?php 
+
 	class Model{
 		public $db;
 		public function __construct(){
 			$this->db = new DB;
 		}
 	}
+
 	class Controller{
 		public $request;
 		public $db;
@@ -34,10 +36,11 @@
             }
 		}
 	}
+
 	class DB{
 		private $conn;
 		public function __construct(){
-			$this->conn = mysqli_connect('localhost', 'root', '@,~rXtn3hU5?3sn~', 'todo_bs');
+			$this->conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 			mysqli_set_charset($this->conn,"utf8");
 		}
 		public function insert($table, Array $data){
@@ -121,33 +124,26 @@
 			}
 
 		}
-		public function fetchAssoc($table,Array $data, Array $filter = null){
-			$sql = 'SELECT ';
-			foreach ($data as $field) {
-				$sql .= $field . ', ';
+		private function fetchAssoc($data){
+			$return = array();
+			$num_rows = $data->num_rows;
+			while ($row = $data->fetch_assoc()) {
+				$return[] = $row;
 			}
-			$sql = rtrim($sql, ', ');
-			$sql .= " FROM $table";
-			if(!is_null($filter)){
-				$sql .= " WHERE ";
-				$flag = false;
-				foreach ($filter as $key => $value) {
-					if($flag) $sql .= " AND ";
-					$sql .= $key . '=' . $value;
-					$flag = true;
-				}
-			}
-			while($row = mysqli_fetch_assoc($this->query($sql))){
-				$rows[] = $row;
-			}
-			var_dump($rows);die;
-			return mysqli_fetch_assoc($this->query($sql));
+			return ['rows' => $return, 'num_rows' => $num_rows];
 		}
 		public function query(String $query){
-			$ret = mysqli_query($this->conn, $query);
-			return $ret;
+			if(!$query = mysqli_query($this->conn, $query)){
+				$return['error'] = true;
+				$return['errormessage'] = mysqli_error($this->conn);
+				return $return;
+			};
+			$return = $this->fetchAssoc($query);
+			echo "<pre>";
+			return $return;
 		}
 	}
+
 	class Route{
 		private $routes = array();
 		public function addRoute(String $route, String $controller){
@@ -174,5 +170,3 @@
 			return $_SERVER['REQUEST_METHOD'];
 		}
 	}
-?>
-

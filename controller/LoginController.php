@@ -2,7 +2,8 @@
 	class LoginController extends Controller{
 		public function index(){
 			//check login.
-			$this->db->fetchAssoc('users', ['*']);
+			$result = $this->db->select('users', ['*']);
+			var_dump($result['rows']);die;
 			if($this->request->method() == "POST" && isset($this->request->post['submit'])){
 
 			}
