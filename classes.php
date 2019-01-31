@@ -139,7 +139,6 @@
 				return $return;
 			};
 			$return = $this->fetchAssoc($query);
-			echo "<pre>";
 			return $return;
 		}
 	}
