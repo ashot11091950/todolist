@@ -3,14 +3,16 @@
 	class Users extends Model{
 		private $table;
 		public function __construct(){
+			parent::__construct();
 			$this->table = strtolower(get_class($this));
 		}
 		public function all(){
 			$result = $this->db->select($this->table, ['*']);
 			return $result;
 		}
-		public function login(String $username, String $password){
+		public function login($field, String $username, String $password){
 			// $password = md5($password);
-			$this->db->select($this->table, ['user_id'], ['username' => $username, 'password' => $password]);
+			$result = $this->db->select($this->table, $field, ['username' => $username, 'password' => $password]);
+			return $result;
 		}
 	}
