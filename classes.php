@@ -43,7 +43,7 @@
 			$this->conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 			mysqli_set_charset($this->conn,"utf8");
 		}
-		public function insert($table, Array $data){
+		public function insert(String $table, Array $data){
 		    $ins = "INSERT INTO $table ";
             $set = "(";
             $val = "(";
@@ -60,31 +60,22 @@
             $set .= ")";
             $val .= ")";
             $ins .= $set . " VALUES " . $val;
-            if($this->query($ins)){
-            	return true;
-            }else{
-            	return false;
-            }
+            return $this->query($ins, false);
 		}
-		public function select($table,Array $data, Array $filter = null){
-			$sql = 'SELECT ';
-			foreach ($data as $field) {
-				$sql .= $field . ', ';
-			}
-			$sql = rtrim($sql, ', ');
-			$sql .= " FROM $table";
+		public function select($table,String $data, Array $filter = null){
+			$sql = "SELECT $data FROM $table";
 			if(!is_null($filter)){
 				$sql .= " WHERE ";
 				$flag = false;
 				foreach ($filter as $key => $value) {
 					if($flag) $sql .= " AND ";
-					$sql .= $key . '=' . $value;
+					$sql .= $key . '=' ."'". $value ."'";
 					$flag = true;
 				}
 			}
 			return $this->query($sql);
 		}
-		public function update($table, Array $data, $filter = null){
+		public function update($table, Array $data, Array $filter){
             $sql = "UPDATE $table SET ";
             $flag = false;
             foreach ($data as $key => $value){
@@ -104,7 +95,7 @@
                     $sql .= $key1 . '=' ."'".$value1."'";
                     $flag1 = true;
                 }
-                return $this->query($sql);
+                return $this->query($sql, false);
             }
 		}
 		public function delete($table, Array $filter){
@@ -116,12 +107,7 @@
 				$sql.=" AND ";
 			}
 			$sql = rtrim($sql," AND");
-			// var_dump($sql);die;
-			if($this->query($sql)){
-				return true;
-			}else{
-				return false;
-			}
+			return $this->query($sql, false);
 
 		}
 		private function fetchAssoc($data){
@@ -132,15 +118,17 @@
 			}
 			return ['rows' => $return, 'num_rows' => $num_rows];
 		}
-		public function query(String $query){
+		public function query(String $query, bool $fetch = true){
 			if(!$query = mysqli_query($this->conn, $query)){
 				$return['error'] = true;
 				$return['errormessage'] = mysqli_error($this->conn);
 				return $return;
 			};
-			$return = $this->fetchAssoc($query);
-			echo "<pre>";
-			return $return;
+			if($fetch){
+				return $this->fetchAssoc($query);
+			}else{
+				return true;
+			}
 		}
 	}
 
@@ -151,22 +139,24 @@
 			$this->routes[] = ['route' => $route, 'controller' => $esiminch[0], 'function' => $esiminch[1]];
 		}
 		public function getRoute(String $url){
+			routeStart:
 			foreach ($this->routes as $route) {
 				if($route['route']==$url){
 					return [$route['controller'], $route['function']];
 				}
 			}
+			$url = '/error404';
+			goto routeStart;
 		}
 	}
 
 	class Request{
 		public $post;
 		public $get;
+		public $method;
 		public function __construct(){
 			$this->post = $_POST;
 			$this->get = $_GET;
-		}
-		public function method(){
-			return $_SERVER['REQUEST_METHOD'];
+			$this->method = $_SERVER['REQUEST_METHOD'];
 		}
 	}
