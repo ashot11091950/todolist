@@ -8,9 +8,6 @@
 					redirect ('/login');
 				}
 			}
-
-
-
 			$header = $this->view('header');
 			$footer = $this->view('footer');
 			$data['header'] = $header;

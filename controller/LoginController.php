@@ -11,7 +11,7 @@
 			$data['error'] = '';
 
 			//check login.
-			if($this->request->method() == "POST" && isset($this->request->post['submit'])){
+			if($this->request->method == "POST" && isset($this->request->post['submit'])){
 				$result = $this->model('Users')->login('user_id, username, password', $this->request->post['username'], $this->request->post['password']);
 				if($result['num_rows'] == 1){
 					$cookies->set($result['rows'][0]['user_id'], generateRandomString(50), 'login');
