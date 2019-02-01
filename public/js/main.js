@@ -5,7 +5,6 @@ $(function () {
         $('.panel-heading').not(this).removeClass('in').next().slideUp();
     });
 
-
 	$(document).on('click', '.button', function(){
 		$(this).next().remove()
 		$(this).after("<input class='newInput' type='text' name='' />")

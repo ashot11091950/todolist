@@ -120,7 +120,7 @@ input[type="text"] {
 .wrapper-ul li {
  position: relative;
 }
-.wrapper-ul li::before {
+/*.wrapper-ul li::before {
  content: '\f105';
  font-family: "Font Awesome 5 Free";
  font-weight: bold;
@@ -129,7 +129,7 @@ input[type="text"] {
  top: 0;
  color: #09afdf;
  transition: 0.5s;
-}
+}*/
 .wrapper-ul li a {
  color: #a94442;
 }
@@ -141,10 +141,10 @@ input[type="text"] {
 .wrapper-ul li a:hover {
  color: #097ca6;
 }
-.wrapper-ul li:hover::before {
+/*.wrapper-ul li:hover::before {
  transform: translateX(4px);
  color: #097ca6;
-}
+}*/
 .button {
  margin-top: 20px;
 }
@@ -397,4 +397,12 @@ content: "\f023";
 	height: 150px;
 	position: absolute;
 	border-radius: 100px;
+}
+.inputProject{
+	width: 165px;
+    height: 35px;
+    margin-bottom:5px;
+}
+.cancelProject{
+	margin-left:5px;
 }
