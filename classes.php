@@ -43,7 +43,7 @@
 			$this->conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 			mysqli_set_charset($this->conn,"utf8");
 		}
-		public function insert($table, Array $data){
+		public function insert(String $table, Array $data){
 		    $ins = "INSERT INTO $table ";
             $set = "(";
             $val = "(";
@@ -66,7 +66,7 @@
             	return false;
             }
 		}
-		public function select($table,Array $data, Array $filter = null){
+		public function select($table, Array $data, Array $filter = null){
 			$sql = 'SELECT ';
 			foreach ($data as $field) {
 				$sql .= $field . ', ';
@@ -84,7 +84,7 @@
 			}
 			return $this->query($sql);
 		}
-		public function update($table, Array $data, $filter = null){
+		public function update($table, Array $data, Array $filter){
             $sql = "UPDATE $table SET ";
             $flag = false;
             foreach ($data as $key => $value){
@@ -116,7 +116,6 @@
 				$sql.=" AND ";
 			}
 			$sql = rtrim($sql," AND");
-			// var_dump($sql);die;
 			if($this->query($sql)){
 				return true;
 			}else{
@@ -150,22 +149,24 @@
 			$this->routes[] = ['route' => $route, 'controller' => $esiminch[0], 'function' => $esiminch[1]];
 		}
 		public function getRoute(String $url){
+			routeStart:
 			foreach ($this->routes as $route) {
 				if($route['route']==$url){
 					return [$route['controller'], $route['function']];
 				}
 			}
+			$url = '/error404';
+			goto routeStart;
 		}
 	}
 
 	class Request{
 		public $post;
 		public $get;
+		public $method;
 		public function __construct(){
 			$this->post = $_POST;
 			$this->get = $_GET;
-		}
-		public function method(){
-			return $_SERVER['REQUEST_METHOD'];
+			$this->method = $_SERVER['REQUEST_METHOD'];
 		}
 	}
