@@ -6,10 +6,9 @@ $(function () {
     });
 
 	$('.button').click(function(){
-		$(this).next().remove()
-		$(this).after("<input class='newInput' type='text' name='' />")
-		.css('transition', 'all .3s')
-		$(this).css('margin-bottom', '10px')
+		$('.nodDiv').remove();
+		$(this).after("<div class='nodDiv'><input class='add' type='text' placeholder='Add Project'><div><button type='button' class='btn btn-success addSave'>Save</button><button type='button' class='btn btn-danger addCancel'>Cancel</button></div></div>");
+		$(this).css('display', 'none');
 	});
 });
 
@@ -41,3 +40,23 @@ $('body').mousemove(function(e){
         $(".image4").css('bottom', amountMovedX + 'px ');
         $(".image4").css('right', amountMovedY + 'px ');
     });
+
+$('.row').on('click', '.addCancel', function(){
+    $('.nodDiv').remove();
+    $('.button').css('display', 'block');
+})
+
+$('.row').on('click', '.addSave', function(){
+    add = $('.add').val();
+    $('.nodDiv').remove();
+    $('.button').css('display', 'block');
+    save = '';
+    $.post({
+        url:'/addproject',
+        data:{add:add, save:save},
+        success : function(res){
+            
+        }
+    })
+
+})
