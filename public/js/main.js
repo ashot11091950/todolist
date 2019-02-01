@@ -1,11 +1,12 @@
 $(function () {
 
-    $('.panel-heading').click(function () {
-        $(this).toggleClass('in').next().slideToggle();
+    $(document).on('click','.panel-heading',function () {
+        $(this).next().toggleClass('in').slideToggle();
         $('.panel-heading').not(this).removeClass('in').next().slideUp();
     });
 
-	$('.button').click(function(){
+
+	$(document).on('click', '.button', function(){
 		$(this).next().remove()
 		$(this).after("<input class='newInput' type='text' name='' />")
 		.css('transition', 'all .3s')
@@ -41,3 +42,32 @@ $('body').mousemove(function(e){
         $(".image4").css('bottom', amountMovedX + 'px ');
         $(".image4").css('right', amountMovedY + 'px ');
     });
+
+$('.addGroup').click(function(){
+    $(this).after('<div class="add_input"><input type="text" placeholder="Add Category" class="inp_add"><div class="add_inp_buttons"><button class="save">Save</button><button class="cancel">Cancel</button></div></div>')
+    $(this).css('display', 'none');
+})
+
+$(document).on('click','.cancel', function(){
+    $('.addGroup').css('display', 'block');
+    $('.add_input').remove();
+})
+
+$(document).on('click', '.save',function (event) {
+    event.preventDefault();
+    var data = $('.inp_add').val()
+    $('.addGroup').css('display', 'block');
+    $('.add_input').remove();
+    //console.log(data);
+  $.ajax({
+       url: "/home",
+       method: 'post',
+       data: {'title': data},
+       success : function(da){
+           da = JSON.parse(da);
+           var el = da.rows;
+           $('.panel:last').after('<div class="panel"><div class="panel-heading"><a><i class="fa fa-shopping-cart"></i>'+el[el.length-1]["content"] +'</a></div><div class="panel-collapse"><div class="panel-body"><div class="wrapper-ul"><ul><li><a href="#">Lorem ipsum</a></li><li><a href="#">Consectetur adipisicing</a></li><li><div class="button"><a>Add Work page</a></div></li></ul></div></div></div></div>')
+           console.log(el[el.length-1]["content"]);
+       }
+   })
+});

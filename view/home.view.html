@@ -7,7 +7,7 @@
             <label class="serchTop-left"><input type="text" placeholder="Search.."></label>
             <div class="panel">
                 <div class="panel-heading">
-                    <a href="#"><i class="fa fa-shopping-cart"></i>Work</a>
+                    <a ><i class="fa fa-shopping-cart"></i>Work</a>
                 </div>
                 <div class="panel-collapse">
                     <div class="panel-body">
@@ -16,7 +16,7 @@
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Consectetur adipisicing</a></li>
                                 <li><a href="#">Lorem ipsum</a></li>
-                                <li><div class="button"><a href="#">Add Work page</a></div></li>
+                                <li><div class="button"><a>Add Work page</a></div></li>
                             </ul>
                         
 
@@ -26,7 +26,7 @@
             </div>
             <div class="panel">
                 <div class="panel-heading">
-                    <a href="#"><i class="fa fa-shopping-cart"></i>Personal</a>
+                    <a ><i class="fa fa-shopping-cart"></i>Personal</a>
                 </div>
                 <div class="panel-collapse">
                     <div class="panel-body">
@@ -34,7 +34,7 @@
                             <ul>
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Consectetur adipisicing</a></li>
-                                <li><div class="button"><a href="#">Add Work page</a></div></li>
+                                <li><div class="button"><a>Add Work page</a></div></li>
                             </ul>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="panel">
                 <div class="panel-heading">
-                    <a href="#"><i class="fa fa-shopping-cart"></i>Other</a>
+                    <a><i class="fa fa-shopping-cart"></i>Other</a>
                 </div>
                 <div class="panel-collapse">
                     <div class="panel-body">
@@ -50,7 +50,7 @@
                             <ul>
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Consectetur adipisicing</a></li>
-                                <li><div class="button"><a href="#">Add Work page</a></div></li>
+                                <li><div class="button"><a>Add Work page</a></div></li>
                             </ul>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
             </div>
             <div class="panel">
                 <div class="panel-heading">
-                    <a href="#"><i class="fa fa-shopping-cart"></i>Home</a>
+                    <a><i class="fa fa-shopping-cart"></i>Home</a>
                 </div>
                 <div class="panel-collapse">
                     <div class="panel-body">
@@ -66,16 +66,37 @@
                             <ul>
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Consectetur adipisicing</a></li>
-                                <li><div class="button"><a href="#">Add Work page</a></div></li>
+                                <li><div class="button"><a>Add Work page</a></div></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            <?php 
+            $arr = $data['cont'];
+            foreach ($arr as $value) {?>
+                
+                <div class="panel">
+                    <div class="panel-heading">
+                        <a><i class="fa fa-shopping-cart"></i><?php echo $value;?></a>
+                    </div><div class="panel-collapse">
+                        <div class="panel-body">
+                            <div class="wrapper-ul">
+                                <ul>
+                                    <li><a href="#">Lorem ipsum</a></li>
+                                    <li><a href="#">Consectetur adipisicing</a></li>
+                                    <li><div class="button"><a>Add Work page</a></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			<?php } ?>
             <div><button class="addGroup">Add Group</button></div>
         </div>
     </div>
 </div>
+
 
 
 <?=$data['footer']?>
