@@ -6,8 +6,8 @@ $(function () {
     });
 
 	$('.button').click(function(){
-		$('.nodDiv').remove();
-		$(this).after("<div class='nodDiv'><input class='add' type='text' placeholder='Add Project'><div><button type='button' class='btn btn-success addSave'>Save</button><button type='button' class='btn btn-danger addCancel'>Cancel</button></div></div>");
+		$('.divProject').remove();
+		$(this).after("<div class='divProject'><input class='inputProject' type='text' placeholder='Add Project'><div><button type='button' class='btn btn-success saveProject'>Save</button><button type='button' class='btn btn-danger cancelProject'>Cancel</button></div></div>");
 		$(this).css('display', 'none');
 	});
 });
@@ -41,14 +41,14 @@ $('body').mousemove(function(e){
         $(".image4").css('right', amountMovedY + 'px ');
     });
 
-$('.row').on('click', '.addCancel', function(){
-    $('.nodDiv').remove();
+$('.row').on('click', '.cancelProject', function(){
+    $('.divProject').remove();
     $('.button').css('display', 'block');
 })
 
-$('.row').on('click', '.addSave', function(){
-    add = $('.add').val();
-    $('.nodDiv').remove();
+$('.row').on('click', '.saveProject', function(){
+    add = $('.inputProject').val();
+    $('.divProject').remove();
     $('.button').css('display', 'block');
     save = '';
     $.post({
