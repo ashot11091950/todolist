@@ -1,40 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/public/css/animate.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"></head>
-<link rel="stylesheet" type="text/css" href="/public/css/home.css">
-<title>To Do List</title>
-</head>
-<body>
+<?=$data['header']?>
 
-<nav class="navbar navbar-inverse fixidTop" id="fixedTop">
-    <div class="container topBar">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">BlESSED</a>               
-        </div>
-        <div class="tools">
-            <ul class="nav navbar-nav navbar-right">
-                    <li class="serchTop"><input type="text" placeholder="Search.."></li>
-                    <li><i class="fas fa-plus-square"></i></li>
-                    <li><i class="far fa-bell"></i></li>
-                    <li><i class="fas fa-cog"></i></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <div class="container main">
     <div class="row">
         <div class="col-sm-3 collapse navbar-collapse" id="responsive-menu">
+            <label class="serchTop-left"><input type="text" placeholder="Search.."></label>
             <div class="panel">
                 <div class="panel-heading">
                     <a href="#"><i class="fa fa-shopping-cart"></i>Work</a>
@@ -45,9 +15,12 @@
                             <ul>
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Consectetur adipisicing</a></li>
+                                <li><a href="#">Lorem ipsum</a></li>
+                                <li><div class="button"><a href="#">Add Work page</a></div></li>
                             </ul>
+                        
+
                         </div>
-                        <div class="button"><a href="#">Add Work page</a></div>
                     </div>
                 </div>
             </div>
@@ -61,9 +34,9 @@
                             <ul>
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Consectetur adipisicing</a></li>
+                                <li><div class="button"><a href="#">Add Work page</a></div></li>
                             </ul>
                         </div>
-                        <div class="button"><a href="#">Add Work page</a></div>
                     </div>
                 </div>
             </div>
@@ -77,9 +50,9 @@
                             <ul>
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Consectetur adipisicing</a></li>
+                                <li><div class="button"><a href="#">Add Work page</a></div></li>
                             </ul>
                         </div>
-                        <div class="button"><a href="#">Add Work page</a></div>
                     </div>
                 </div>
             </div>
@@ -93,9 +66,9 @@
                             <ul>
                                 <li><a href="#">Lorem ipsum</a></li>
                                 <li><a href="#">Consectetur adipisicing</a></li>
+                                <li><div class="button"><a href="#">Add Work page</a></div></li>
                             </ul>
                         </div>
-                        <div class="button"><a href="#">Add Work page</a></div>
                     </div>
                 </div>
             </div>
@@ -105,17 +78,4 @@
 </div>
 
 
-
-
-
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-<!-- <script src="../js/salvattore.min.js"></script> -->
-<script src="/public/js/home.js"></script>
-</body>
-</html>
+<?=$data['footer']?>
