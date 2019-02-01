@@ -1,0 +1,399 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+@font-face {
+  font-family: worksans;
+  src: url("../fonts/worksans.woff2");
+}
+#fixedTop {
+	background: linear-gradient(45deg,#481d2b 0%,#ce2525 100%);
+}
+.navbar-right {
+	margin: 15px;
+	display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    margin-right: 0;
+}
+.navbar-toggle {
+	float: left;
+}
+input[type="text"] {
+	padding-left: 23px;
+	border-radius: 5px;
+}
+.serchTop::before {
+	 font-family: "Font Awesome 5 Free";
+	 content: "\f002";
+	 position: absolute;
+	 font-size: 16px;
+	 padding-left: 7px;
+	 color: #2c536c;
+	 font-weight: bold;
+	 margin-top: 2px;
+}
+.navbar-right i {
+	font-size: 25px;
+    color: #eef3ec;
+    margin: auto 10px;
+}
+.topBar {
+	padding: 0 100px;
+}
+.navbar-brand {
+    height: 55px; 
+    padding: 15px 15px; 
+    line-height: unset;
+    font-size: 20px;
+    font-family: worksans;
+    background: linear-gradient(45deg,#ff0055 0%,#ff6600 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    background-size: cover;
+    background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+.main {
+ margin-top: 10px;
+}
+
+.main div {
+ font-family: Roboto, sans-serif;
+ font-size: 15px;
+ color: #777777;
+ line-height: 1.4;
+ text-align: left;
+}
+.main a {
+ font-weight: 400;
+ text-decoration: none;
+}
+.panel {
+	background-color: #D0CDCE; 
+	margin-bottom: 0;
+	border: none;
+}
+.panel-body {
+	padding: 0 0 0 20px;
+}
+.panel-heading {
+ margin-top: 10px;
+}
+.panel-heading a {
+	width: 220px;
+	background: #333333;
+	color: #ffffff;
+	display: block;
+	padding: 10px 40px 10px 15px;
+	position: relative;
+	transition: 0.3s;
+}
+.panel-heading a:hover {
+ background: #0c5673;
+}
+.panel-heading a i {
+ font-size: 16px;
+ width: 30px;
+}
+.panel-heading a::after {
+ content: "\f107";
+ font-family: "Font Awesome 5 Free";
+ position: absolute;
+ right: 15px;
+ transition: 0.3s;
+ font-weight: bold;
+}
+.panel-heading.in a::after {
+ transform: rotate(180deg);
+}
+.panel-collapse {
+ display: none;
+ padding-bottom: 20px;
+}
+.wrapper-ul ul {
+ margin-top: 5px;
+ padding-left: 20px;
+ list-style-type: none;
+}
+.wrapper-ul li {
+ position: relative;
+}
+.wrapper-ul li::before {
+ content: '\f105';
+ font-family: "Font Awesome 5 Free";
+ font-weight: bold;
+ position: absolute;
+ left: -13px;
+ top: 0;
+ color: #09afdf;
+ transition: 0.5s;
+}
+.wrapper-ul li a {
+ color: #a94442;
+}
+
+.wrapper-ul li:first-child {
+ color: #333333;
+ font-weight: 500;
+}
+.wrapper-ul li a:hover {
+ color: #097ca6;
+}
+.wrapper-ul li:hover::before {
+ transform: translateX(4px);
+ color: #097ca6;
+}
+.button {
+ margin-top: 20px;
+}
+.button a {
+ background: #09afdf;
+ color: #ffffff;
+ padding: 8px 25px;
+ border-radius: 5px;
+ border: 1px solid #0994c4;
+ transition: 0.3s;
+}
+.button a:hover {
+ background: #0994c4;
+}
+.button::before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f067";
+	position: absolute;
+	font-size: 20px;
+	padding-left: 5px;
+	margin-top: -3px;
+	color: #fff;
+	font-weight: bold;
+}
+.addGroup {
+	margin: 10px 0 10px 10px;
+    padding: 7px;
+    width: 90%;
+    border-radius: 5px;
+    color: #862751;
+    background: gray;
+    font-weight: bold;
+}
+.addGroup:hover {
+	background-color: #b76f6f;
+}
+#responsive-menu {
+	background-color: #D0CDCE;
+    margin-bottom: 0;
+    border-radius: 5px;
+}
+.serchTop-left {
+    margin: 10px auto 0 15px;
+    display: none;
+}
+.serchTop-left::before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f002";
+	font-size: 16px;
+	position: absolute;
+	padding-left: 7px;
+	color: #2c536c;
+	font-weight: bold;
+	margin-top: 2px;
+}
+.newInput {
+	width: 155px;
+	padding-left: 0!important;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px)  {
+	.navbar-brand {
+		display: none;
+	}
+	.navbar-header {
+		float: left;
+		margin-top: 5px;
+	}
+	#responsive-menu {
+		width: 280px;
+		overflow: hidden;
+	}
+	.serchTop {
+		display: none!important;
+	}
+	.serchTop-left {
+		display: block;
+	}
+}
+
+
+/*h1 {
+	font-size: 80px;
+	background: url(image/blees.jpg);
+	background-position: 60%;
+	-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: cover;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+.logo {
+	width: 700px;
+	margin: 200px auto;
+	font-size: 30px;
+	font-family: sans-serif;
+	position: relative;
+}
+.logo p {
+	width: 70%;
+}
+.error-logo {
+	position: absolute;
+	right: 0px;
+	top: -150px;
+	font-size: 100px;
+	color: red;
+}
+
+.error-logo img {
+	border-radius: 100px;
+	width: 150px;
+	height: 150px;
+	background: red;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+                                                         /*login*/
+.todoBody {
+ background-image: url("../images/fon-priroda29.jpg");
+ background-size: cover;
+ background-repeat: no-repeat;
+}
+.cont a{
+    color: #1a394f;
+	font-weight: bold;
+
+ }
+.cont a:hover{
+    text-decoration: none;
+    color: #fff;
+}
+.cont{
+	background-image: url("../images/fon1.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	width:450px;
+	margin: 170px auto 0 auto;
+	text-align: center;
+	box-shadow: 0 -5px 0 #3adbfd;
+	padding-bottom: 20px;
+	border-radius: 20px;
+}
+.cont img{
+ width:120px;
+ height:120px;
+ margin: -60px 0 30px 0;
+ border: 5px solid #1a394f;
+ border-radius: 50%;
+ box-shadow: 0 -5px 0 #3adbfd;
+}
+
+.cont input[type="text"], .cont input[type="password"]{
+ width: 300px;
+ height:40px;
+ font-size: 18px;
+ margin-bottom: 25px;
+ border-radius: 4px;
+ padding-left: 40px;
+}
+.dws-input input:hover{
+ box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
+}
+.dws-submit {
+ padding: 10px 30px;
+ margin: 5px 0 20px 0;
+ font-size: 15px;
+ color: #fff;
+ background-color: #2ca8c6;
+ border: none;
+ border-bottom: 2px solid #6ee9fd;
+ border-radius: 3px;
+ cursor: pointer;
+}
+.dws-submit:hover{
+ transition: all 0.5s;
+ background: #fff;
+ color: #2c536c;
+}
+
+.dws-input::before{
+ font-family: "Font Awesome 5 Free";
+ content: "\f007";
+ position: absolute;
+ font-size: 30px;
+ padding-left: 7px;
+ color: #2c536c;
+ font-weight: bold;
+}
+.dws-input:nth-child(2)::before{
+content: "\f023";
+}
+.dws-input:hover::before{
+ color: #319ebc;
+ transition: all 0.3s;
+}
+.dws-social i{
+ color: #319ebc;
+ font-size: 20px;
+ padding: 10px;
+}
+.dws-social i:hover{
+ background-color: #fff;
+ color: #1a394f;
+ border-radius: 5px;
+ cursor: pointer;
+}
+.image1 {
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	border-radius: 100px;
+}
+.image2 {
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	border-radius: 100px;
+}
+.image3 {
+	top: 300px;
+	right: 300px;
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	border-radius: 100px;
+}
+.image4 {
+	bottom: 200px;
+	right: 200px;
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	border-radius: 100px;
+}

@@ -4,37 +4,42 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/public/css/animate.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"></head>
-		<link rel="stylesheet" type="text/css" href="/public/css/todo.css">
-		<title><?=$data['title']?></title>
-	</head>	
-	<body>
-		<div class="container">
-	        <img src="/public/image/men.png">
-	        <form action="" method="post">
-	            <div class="dws-input">
-	                <input type="text" name="username" placeholder="Введите логин">
+		<link rel="stylesheet" type="text/css" href="/public/css/style.css">
+		<title>To Do List</title>
+	</head>
+	<body class="todoBody">
+	<div class="container">
+	    <img src="/public/images/fon-priroda29.jpg" alt="111" class="image1">
+	    <img src="/public/images/fon-priroda29.jpg" alt="111" class="image2">
+	    <div class="row">
+	        <div class="col-cm-12 cont">
+	            <img src="/public/images/blees.jpg" alt="bless">
+	            <form action='' method='post'>
+	                <div class="dws-input">
+	                    <input type="text" name="username" placeholder="Введите логин">
+	                </div>
+	                <div class="dws-input">
+	                    <input type="password" name="password" placeholder="Введите пароль">
+	                </div>
+	                <input class="dws-submit" type="submit" name="submit" value="ВОЙТИ"><br />
+	                <a href="#">Восстановить пароль</a>
+	            </form>
+	            <div class="dws-social">
+	                <i class="fab fa-vk"></i>
+	                <i class="fab fa-facebook-f"></i>
+	                <i class="fab fa-twitter"></i>
+	                <i class="fab fa-google-plus-g"></i>
+	                <i class="fab fa-odnoklassniki"></i>
 	            </div>
-	            <div class="dws-input">
-	                <input type="password" name="password" placeholder="Введите пароль">
-	            </div>
-	            <p class="error"><?=$data['error']?></p>
-	            <input class="dws-submit" type="submit" name="submit" value="ВОЙТИ"><br />
-	            <a href="#">Восстановить пароль</a>
-	        </form>
-	        <div class="dws-social">
-	            <i class="fab fa-vk"></i>
-	            <i class="fab fa-facebook-f"></i>
-	            <i class="fab fa-twitter"></i>
-	            <i class="fab fa-google-plus-g"></i>
-	            <i class="fab fa-odnoklassniki"></i>
 	        </div>
+	        <img src="/public/images/fon-priroda29.jpg" alt="111" class="image3">
+	        <img src="/public/images/fon-priroda29.jpg" alt="111" class="image4">
 	    </div>
+	</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-		<script src="/public/js/salvattore.min.js"></script>
-		<script src="/public/js/todo.js"></script>
+		<script src="/public/js/main.js"></script>
 	</body>
 </html>
