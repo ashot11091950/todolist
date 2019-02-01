@@ -1,9 +1,11 @@
 <?php 
 
 	class Model{
+		public $request;
 		public $db;
 		public function __construct(){
 			$this->db = new DB;
+			$this->request = new Request;
 		}
 	}
 
@@ -141,6 +143,13 @@
 		public function getRoute(String $url){
 			routeStart:
 			foreach ($this->routes as $route) {
+				if($strpos = strpos($route['route'], '*')){
+					$substrroute = substr($route['route'], 0, $strpos);
+					$substrurl = substr($url, 0, $strpos);
+					if($substrroute == $substrurl) {
+						return [$route['controller'], $route['function']];
+					}
+				}
 				if($route['route']==$url){
 					return [$route['controller'], $route['function']];
 				}
@@ -154,9 +163,11 @@
 		public $post;
 		public $get;
 		public $method;
+		public $cookies;
 		public function __construct(){
 			$this->post = $_POST;
 			$this->get = $_GET;
+			$this->cookies = $_COOKIE;
 			$this->method = $_SERVER['REQUEST_METHOD'];
 		}
 	}

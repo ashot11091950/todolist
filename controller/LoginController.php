@@ -3,7 +3,7 @@
 		public function index(){
 			$cookies = $this->model('Cookies');
 			if(isset($_COOKIE['login'])){
-				if($user_id = $cookies->select('user_id', ['cookie_key'=>$_COOKIE['login']])){
+				if($cookies->select('user_id', ['cookie_key'=>$_COOKIE['login']])){
 					redirect('/home');
 				}
 			}			
