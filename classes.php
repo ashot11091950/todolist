@@ -17,7 +17,7 @@
 			$this->request = new Request;
 		}
 		protected function model($modelName){
-			include 'model/' . $modelName . '.php';
+			include_once 'model/' . $modelName . '.php';
 			return new $modelName;
 		}
 		protected function view(String $filename, Array $data = null){
