@@ -2,7 +2,6 @@
 	class Cookies extends Model{
 		private $table = 'cookies';
 
-
 		public function set($user_id, String $cookie_key, String $cookie_name, $time = 'false'){
 			setcookie($cookie_name, $cookie_key);
 			return $this->db->insert($this->table, ['user_id'=>$user_id, 'cookie_key'=>$cookie_key, 'cookie_name'=>$cookie_name, 'time'=>$time]);

@@ -6,8 +6,9 @@ $(function () {
     });
 
 	$('.button').click(function(){
+        category_id = $(this).attr('data-category-id');
 		$('.divProject').remove();
-		$(this).after("<div class='divProject'><input class='inputProject' type='text' placeholder='Add Project'><div><button type='button' class='btn btn-success saveProject'>Save</button><button type='button' class='btn btn-danger cancelProject'>Cancel</button></div></div>");
+		$(this).after("<div class='divProject'><input class='inputProject' type='text' placeholder='Add Project'><div><button type='button' class='btn btn-success saveProject' data-category-id="+category_id+">Save</button><button type='button' class='btn btn-danger cancelProject'>Cancel</button></div></div>");
 		$(this).css('display', 'none');
 	});
 });
@@ -44,19 +45,76 @@ $('body').mousemove(function(e){
 $('.row').on('click', '.cancelProject', function(){
     $('.divProject').remove();
     $('.button').css('display', 'block');
+    $('.button_task').css('display', 'block');
 })
 
 $('.row').on('click', '.saveProject', function(){
-    add = $('.inputProject').val();
-    $('.divProject').remove();
-    $('.button').css('display', 'block');
-    save = '';
+    var this_tag = $(this);
+    var category_id = $(this).attr('data-category-id');
+    var title = $('.inputProject').val();
+    var save = '';
     $.post({
         url:'/addproject',
-        data:{add:add, save:save},
+        data:{title:title, save:save, category_id:category_id},
         success : function(res){
-            
+            if(res == 1){
+                this_tag.parent().parent().parent().parent().prepend('<li><a class="project">'+title+'</a></li>');
+                $('.divProject').remove();
+                $('.button').css('display', 'block');
+            }
+            if(res == 0){
+                $('.divProject input').after('<p class="error">There is a problem with server</p>');
+            }
         }
     })
 
+})
+$('#responsive-menu').on('click', '.project', function(){
+    $('#content ul').empty();
+    $('#content .wrapper-ul h1').remove();
+    $('#content .wrapper-ul').prepend('<h1>'+$(this).text()+' project</h1>');
+    var project_id = $(this).attr('data-project-id');
+    $.post({
+        url:'/printtask',
+        data:{project_id:project_id},
+        success:function(res){
+            if(res == 0){
+                $('#content ul').empty();
+                $('#content ul').prepend('<li><div class="button_task" data-project-id="'+project_id+'"><a>Add task</a></div></li>')
+            }else{
+                var data = JSON.parse(res);
+                html = '';
+                $(data).each(function(){
+                    html += '<li><a data-task-id="'+$(this)[0].task_id+'">'+$(this)[0].title+'</a></li>';
+                })
+                html += '<li><div class="button_task" data-project-id="'+project_id+'"><a>Add task</a></div></li>';
+                $('#content ul').prepend(html);
+            }
+        }
+    })
+})
+$('#content').on('click', '.button_task', function(){
+        var project_id = $(this).attr('data-project-id');
+        $('.divProject').remove();
+        $(this).after("<div class='divProject'><input class='inputTask' type='text' placeholder='Add Task'><div><button type='button' class='btn btn-success saveTask' data-project-id="+project_id+">Save</button><button type='button' class='btn btn-danger cancelProject'>Cancel</button></div></div>");
+        $(this).css('display', 'none');
+    });
+$('#content').on('click', '.saveTask', function(){
+    var this_tag = $(this);
+    var project_id = $(this).attr('data-project-id');
+    var title = $('.inputTask').val();
+    $.post({
+        url:'/addtask',
+        data:{project_id:project_id, title:title},
+        success:function(res){
+            if(res == 1){
+                $('#content ul').prepend('<li><a>'+title+'</a></li>');
+                $('.divProject').remove();
+                $('.button_task').css('display', 'block');
+            }
+            if(res == 0){
+                $('.divProject input').after('<p class="error">There is a problem with server</p>');
+            }
+        }
+    })
 })
