@@ -4,8 +4,13 @@
   font-family: worksans;
   src: url("../fonts/worksans.woff2");
 }
+.homeBody {
+	/*background-color: #CFCBCD; */
+}
 #fixedTop {
 	background: linear-gradient(45deg,#481d2b 0%,#ce2525 100%);
+	margin-bottom: 0;
+	border-radius: unset;
 }
 .navbar-right {
 	margin: 15px;
@@ -17,9 +22,10 @@
 }
 .navbar-toggle {
 	float: left;
+	margin-top: 15px;
 }
 input[type="text"] {
-	padding-left: 23px;
+	padding-left: 16px;
 	border-radius: 5px;
 }
 .serchTop::before {
@@ -27,7 +33,7 @@ input[type="text"] {
 	 content: "\f002";
 	 position: absolute;
 	 font-size: 16px;
-	 padding-left: 7px;
+	 padding-left: 3px;
 	 color: #2c536c;
 	 font-weight: bold;
 	 margin-top: 2px;
@@ -35,16 +41,26 @@ input[type="text"] {
 .navbar-right i {
 	font-size: 25px;
     color: #eef3ec;
-    margin: auto 10px;
+    margin: 0;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
 }
-.topBar {
-	padding: 0 100px;
+.navbar-right img {
+	width: 40px;
+	height: 40px;
+    cursor: pointer;
+    border-radius: 30px;
 }
+.navbar-right i:hover {
+	background-color: maroon;
+}
+
 .navbar-brand {
-    height: 55px; 
-    padding: 15px 15px; 
+	margin: 0!important;
+    height: 75px; 
     line-height: unset;
-    font-size: 20px;
+    font-size: 33px;
     font-family: worksans;
     background: linear-gradient(45deg,#ff0055 0%,#ff6600 100%);
     -webkit-background-clip: text;
@@ -53,11 +69,9 @@ input[type="text"] {
     background-repeat: no-repeat;
 	overflow: hidden;
 }
-
 .main {
- margin-top: 10px;
+	background-color: floralwhite;
 }
-
 .main div {
  font-family: Roboto, sans-serif;
  font-size: 15px;
@@ -68,12 +82,12 @@ input[type="text"] {
 .main a {
  font-weight: 400;
  text-decoration: none;
+ cursor: pointer;
 }
 .panel {
 	background-color: #D0CDCE; 
 	margin-bottom: 0;
 	border: none;
-	cursor: pointer;
 }
 .panel-body {
 	padding: 0 0 0 20px;
@@ -120,7 +134,7 @@ input[type="text"] {
 .wrapper-ul li {
  position: relative;
 }
-/*.wrapper-ul li::before {
+.wrapper-ul li::before {
  content: '\f105';
  font-family: "Font Awesome 5 Free";
  font-weight: bold;
@@ -129,11 +143,10 @@ input[type="text"] {
  top: 0;
  color: #09afdf;
  transition: 0.5s;
-}*/
+}
 .wrapper-ul li a {
  color: #a94442;
 }
-
 .wrapper-ul li:first-child {
  color: #333333;
  font-weight: 500;
@@ -141,10 +154,13 @@ input[type="text"] {
 .wrapper-ul li a:hover {
  color: #097ca6;
 }
-/*.wrapper-ul li:hover::before {
+.wrapper-ul li:hover::before {
  transform: translateX(4px);
  color: #097ca6;
-}*/
+}
+.wrapper-ul li:last-child::before {
+	content: "";
+}
 .button {
  margin-top: 20px;
 }
@@ -181,10 +197,15 @@ input[type="text"] {
 .addGroup:hover {
 	background-color: #b76f6f;
 }
-#responsive-menu {
+.akkordionOne {
 	background-color: #D0CDCE;
     margin-bottom: 0;
-    border-radius: 5px;
+	width: 280px;
+	float: left;
+	z-index: 1;
+}
+.serchTop {
+	margin-right: 10px;
 }
 .serchTop-left {
     margin: 10px auto 0 15px;
@@ -195,14 +216,84 @@ input[type="text"] {
 	content: "\f002";
 	font-size: 16px;
 	position: absolute;
-	padding-left: 7px;
+	padding-left: 3px;
 	color: #2c536c;
 	font-weight: bold;
 	margin-top: 2px;
 }
-.newInput {
-	width: 155px;
-	padding-left: 0!important;
+.tableSettings {
+	background-color: #fff;
+	padding: 10px;
+	z-index: 5;
+    position: fixed;
+    top: 77px;
+    right: 0px;
+    font-weight: bold;
+    color: #6E5B65;
+    display: none;
+}
+.tableS {
+	min-width: 250px;
+}
+.tableS td {
+	padding-left: 5px;
+}
+.tableS tr {
+	cursor: pointer;
+	padding: 2px;
+}
+.tableS tr:hover {
+    background: #F7EEEE;
+}
+.inputProject{
+    width: 165px;
+   height: 35px;
+   margin-bottom:5px;
+}
+.cancelProject{
+    margin-left:5px;
+}
+.spanSettings {
+	top: 55px;
+	background-color: #fff;
+    content: "";
+    height: 12px;
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 13px;
+    display: none;
+}
+.tableNotifi {
+	background-color: #fff;
+	padding: 10px;
+	z-index: 5;
+    position: absolute;
+    top: 77px;
+    right: 0px;
+    font-weight: bold;
+    color: #6E5B65;
+    display: none;
+}
+.tableN {
+	min-width: 250px;
+}
+.tableN td {
+	padding-left: 5px;
+}
+.tableN tr {
+	cursor: pointer;
+	padding: 2px;
+}
+.tableN tr:hover {
+    background: #F7EEEE;
+}
+.projek{
+	background-image: url(../images/spitakFon.jpg);
+	background-size: cover;
+	height: 500px;
+	width: 60%;
+	overflow: hidden;
 }
 
 
@@ -221,9 +312,9 @@ input[type="text"] {
 		float: left;
 		margin-top: 5px;
 	}
-	#responsive-menu {
-		width: 280px;
+	.akkordionOne {
 		overflow: hidden;
+		position: absolute;
 	}
 	.serchTop {
 		display: none!important;
@@ -282,9 +373,10 @@ input[type="text"] {
 
                                                          /*login*/
 .todoBody {
- background-image: url("../images/fon-priroda29.jpg");
+ background-image: url("../images/xzbz.jpg");
  background-size: cover;
- background-repeat: no-repeat;
+ background-repeat: repeat;
+ height: 100vh;
 }
 .cont a{
     color: #1a394f;
@@ -296,13 +388,12 @@ input[type="text"] {
     color: #fff;
 }
 .cont{
-	background-image: url("../images/fon1.jpg");
+	background-image: url("../images/workUp.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	width:450px;
 	margin: 170px auto 0 auto;
 	text-align: center;
-	box-shadow: 0 -5px 0 #3adbfd;
 	padding-bottom: 20px;
 	border-radius: 20px;
 }
@@ -312,7 +403,6 @@ input[type="text"] {
  margin: -60px 0 30px 0;
  border: 5px solid #1a394f;
  border-radius: 50%;
- box-shadow: 0 -5px 0 #3adbfd;
 }
 
 .cont input[type="text"], .cont input[type="password"]{
@@ -398,6 +488,12 @@ content: "\f023";
 	position: absolute;
 	border-radius: 100px;
 }
+
+@media (max-width: 991px) {
+	.image1, .image2, .image3, .image4 {
+		display: none;
+	}
+}
 .inputProject{
 	width: 165px;
     height: 35px;
@@ -405,4 +501,10 @@ content: "\f023";
 }
 .cancelProject{
 	margin-left:5px;
+}
+.error{
+	color:red;
+}
+.inputTask{
+    margin-bottom:5px;
 }

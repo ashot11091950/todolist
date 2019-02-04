@@ -7,7 +7,6 @@
 		}
 
 		function select(String $field, Array $filter){
-			$result = $this->db->select($this->table, $field, $filter);
-			return $result;
+			return $this->db->select($this->table, $field, $filter);
 		}
 }

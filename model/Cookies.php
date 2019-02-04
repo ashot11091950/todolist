@@ -1,6 +1,6 @@
 <?php
 	class Cookies extends Model{
-		private $table="cookies";
+		private $table = 'cookies';
 
 		public function set($user_id, String $cookie_key, String $cookie_name, $time = 'false'){
 			setcookie($cookie_name, $cookie_key);
