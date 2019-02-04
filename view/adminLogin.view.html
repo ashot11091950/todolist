@@ -1,0 +1,20 @@
+<style>
+    .modal{
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%, -50%);
+        background-color: #7e7e7e;
+        padding:10px;
+    }
+</style>
+<div class="modal">
+    <?php if(isset($data['error'])): ?>
+    <h1><?=$data['error']?></h1>
+    <?php endif; ?>
+    <form action="/admin" method="POST">
+        <input name="username" ><br>
+        <input name="password" type="password" ><br>
+        <input name="submit" type="submit" value="Login"><br>
+    </form>
+</div>
