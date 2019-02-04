@@ -1,11 +1,11 @@
 $(function () {
 
-    $('.panel-heading').click(function () {
-        $(this).toggleClass('in').next().slideToggle();
+    $(document).on('click','.panel-heading',function () {
+        $(this).next().toggleClass('in').slideToggle();
         $('.panel-heading').not(this).removeClass('in').next().slideUp();
     });
 
-	$('.button').click(function(){
+	$(document).on('click', '.button', function(){
 		$(this).next().remove()
 		$(this).after("<input class='newInput' type='text' name='' />")
 		.css('transition', 'all .3s')
@@ -36,45 +36,37 @@ $('body').mousemove(function(e){
 });
 
 $('body').mousemove(function(e){
-    var amountMovedX = (e.pageX * 5 / 15);
-    var amountMovedY = (e.pageY * 5 / 15);
-    $(".image4").css('bottom', amountMovedX + 'px ');
-    $(".image4").css('right', amountMovedY + 'px ');
+        var amountMovedX = (e.pageX * 5 / 15);
+        var amountMovedY = (e.pageY * 5 / 15);
+        $(".image4").css('bottom', amountMovedX + 'px ');
+        $(".image4").css('right', amountMovedY + 'px ');
+    });
+
+$('.addGroup').click(function(){
+    $(this).after('<div class="add_input"><input type="text" placeholder="Add Category" class="inp_add"><div class="add_inp_buttons"><button class="save">Save</button><button class="cancel">Cancel</button></div></div>')
+    $(this).css('display', 'none');
+})
+
+$(document).on('click','.cancel', function(){
+    $('.addGroup').css('display', 'block');
+    $('.add_input').remove();
+})
+
+$(document).on('click', '.save',function (event) {
+    event.preventDefault();
+    var data = $('.inp_add').val()
+    $('.addGroup').css('display', 'block');
+    $('.add_input').remove();
+    //console.log(data);
+  $.ajax({
+       url: "/home",
+       method: 'post',
+       data: {'title': data},
+       success : function(da){
+           da = JSON.parse(da);
+           var el = da.rows;
+           $('.panel:last').after('<div class="panel"><div class="panel-heading"><a><i class="fa fa-shopping-cart"></i>'+el[el.length-1]["content"] +'</a></div><div class="panel-collapse"><div class="panel-body"><div class="wrapper-ul"><ul><li><a href="#">Lorem ipsum</a></li><li><a href="#">Consectetur adipisicing</a></li><li><div class="button"><a>Add Work page</a></div></li></ul></div></div></div></div>')
+           console.log(el[el.length-1]["content"]);
+       }
+   })
 });
-
-
-//notification code
-
-// if ('serviceWorker' in navigator) {
-//     window.addEventListener('load', function() {
-//         askPermission();
-//     });
-//  }else{
-//     document.write('serviceWorker Not found in navigator');
-//  }
- 
-//  function askPermission() {
-//     return new Promise(function(resolve, reject) {
-//         const permissionResult = Notification.requestPermission(function(result) {
-//             resolve(result);
-//         });
- 
-//         if (permissionResult) {
-//             permissionResult.then(resolve, reject);
-//         }
-//     })
-//     .then(function(permissionResult) {
-//         if (permissionResult !== 'granted') {
-//             throw new Error('We weren\'t granted permission.');
-//         }else{
-//             sendNotification('aaaaaaaaaaaaaaaaaaaaaaaaa... \nsomytaymy, somytaymy, girappa, girappa...')
-//         }
-//     });
-//  }
- 
-//  function sendNotification(title){
-//      var options = {
-//          body: title
-//      }
-//     return new Notification('Notification', options);
-//  }

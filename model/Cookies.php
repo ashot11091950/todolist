@@ -13,14 +13,11 @@
 				return $result[0]['user_id'];
 			}
 		}
-
-		public function clear($cookie_name){
-			if(isset($_COOKIE[$cookie_name])){
-				$this->db->delete($this->table, ['cookie_key'=>$this->request->cookies['login']]);
-				unset($_COOKIE[$cookie_name]);
-				setcookie($cookie_name, '', time()-3600);
-			}else{
-				return false;
+		public function delete(Array $filter){
+			$result = $this->db->delete($this->table, $filter);
+			if($result){
+				return true;
 			}
 		}
+
 	}
