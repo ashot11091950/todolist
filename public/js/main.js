@@ -6,13 +6,41 @@ $(function () {
     });
 
 
-	$('.button').click(function(){
+	$('.row').on('click', '.button', function(){
         category_id = $(this).attr('data-category-id');
 		$('.divProject').remove();
 		$(this).after("<div class='divProject'><input class='inputProject' type='text' placeholder='Add Project'><div><button type='button' class='btn btn-success saveProject' data-category-id="+category_id+">Save</button><button type='button' class='btn btn-danger cancelProject'>Cancel</button></div></div>");
 		$(this).css('display', 'none');
 	});
-});
+
+    $('.panelSetings').click(function () {
+        $('.tableSettings').toggle(200);
+        $('.spanSettings').toggle(100);
+        $('.spanSettings').css('right', '15px');
+    });
+
+    $('.panelNotifi').click(function () {
+        $('.tableNotifi').toggle(200);
+        $('.spanSettings').toggle(100);
+        $('.spanSettings').css('right', '58px');
+    })
+
+    $(document).mouseup(function (e){ // событие клика по веб-документу
+        var div = $(".tableSettings, .spanSettings, .tableNotifi, .panelSetings"); // тут указываем ID элемента
+        var div1 = $(".tableSettings, .spanSettings");
+        if (!div.is(e.target) // е сли клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            div1.hide(); 
+        }
+        var div2 = $(".tableSettings, .spanSettings, .tableNotifi, .panelNotifi"); // тут указываем ID элемента
+        var div3 = $(".tableNotifi, .spanSettings");
+        if (!div2.is(e.target) // е сли клик был не по нашему блоку
+            && div2.has(e.target).length === 0) { // и не по его дочерним элементам
+            div3.hide(); 
+        }
+    })
+
+})
 
 
 $('body').mousemove(function(e){
@@ -144,7 +172,7 @@ $(document).on('click', '.save',function (event) {
        success : function(da){
            da = JSON.parse(da);
            var el = da.rows;
-           $('.panel:last').after('<div class="panel"><div class="panel-heading"><a><i class="fa fa-shopping-cart"></i>'+el[el.length-1]["content"] +'</a></div><div class="panel-collapse"><div class="panel-body"><div class="wrapper-ul"><ul><li><a href="#">Lorem ipsum</a></li><li><a href="#">Consectetur adipisicing</a></li><li><div class="button"><a>Add Work page</a></div></li></ul></div></div></div></div>')
+           $('.panel:last').after('<div class="panel"><div class="panel-heading"><a><i class="fa fa-shopping-cart"></i>'+el[el.length-1]["content"] +'</a></div><div class="panel-collapse"><div class="panel-body"><div class="wrapper-ul"><ul><li><div class="button"><a>Add Work page</a></div></li></ul></div></div></div></div>')
            console.log(el[el.length-1]["content"]);
        }
    })
