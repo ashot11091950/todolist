@@ -4,7 +4,8 @@
         public function index(){
             $cookies = $this->model('Cookies');
             if(isset($this->request->cookies['login'])){
-                if($cookies->select('user_id', ['cookie_key'=>$_COOKIE['login']])){
+                if($result = $this->db->select('cookies', 'user_id', ['cookie_key'=>$this->request->cookies['login']])){
+                    $admin_id = $result;
                     goto adminpage;
 				}
             }
@@ -44,7 +45,7 @@
                         $data['message'] = 'Registration complete';
                     }
                 }elseif($this->request->post['submit'] == 'Logout'){
-                    $cookies->clear('login');
+                    $cookies->delete(['admin_id'=>$admin_id]);
                     if(isset($data['error']))unset($data['error']);
                     goto adminlogin;
                 }
