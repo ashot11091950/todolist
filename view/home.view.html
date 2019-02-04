@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-sm-3 collapse navbar-collapse" id="responsive-menu">
             <label class="serchTop-left"><input type="text" placeholder="Search.."></label>
+
             <?php if($data['category_id']): ?>
                 <?php for($i=0; $i< count($data['category_id']); $i++): ?>
                     <div class="panel">
@@ -27,6 +28,7 @@
                 <?php endfor; ?>
             <?php endif; ?>
             <div><button class="addGroup">Add Category</button></div>
+           
         </div>
         <div class="col-sm-3 collapse navbar-collapse" id='content'>
             <div class="wrapper-ul">
@@ -36,6 +38,7 @@
         </div>
     </div>
 </div>
+
 
 
 <?=$data['footer']?>

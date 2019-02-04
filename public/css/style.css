@@ -73,6 +73,7 @@ input[type="text"] {
 	background-color: #D0CDCE; 
 	margin-bottom: 0;
 	border: none;
+	cursor: pointer;
 }
 .panel-body {
 	padding: 0 0 0 20px;
