@@ -5,6 +5,14 @@
 		header('Location: ' . $url);
 	}
 
+	function error500(){
+		if(is_file('view/'.ERR500.'.view.html')){
+			include 'view/'.ERR500.'.view.html';
+		}else{
+			die("Error GetView: File view/".ERR500.".view.html doesn't exist");
+		}
+		exit;
+	}
 
 	function generateRandomString($length = 10) {
 	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

@@ -26,7 +26,12 @@
                 include 'view/'.$filename.'.view.html';
                 return ob_get_clean();
             }else{
-                die("Error GetView: File view/$filename.view.html doesn't exist");
+				if(DEBUG){
+					die("Error GetView: File view/$filename.view.html doesn't exist");
+				}else{
+					error500();
+				}
+				error_log("Error GetView: File view/$filename.view.html doesn't exist");
             }
             // $this->view .= file_get_contents('view/'.$filename.'.view.html');
         }
@@ -34,7 +39,12 @@
 			if(is_file('view/'.$filename.'.view.html')){
                 include 'view/'.$filename.'.view.html';
             }else{
-                die("Error GetView: File view/$filename.view.html doesn't exist");
+				if(DEBUG){
+					die("Error GetView: File view/$filename.view.html doesn't exist");
+				}else{
+					error500();
+				}
+				error_log("Error GetView: File view/$filename.view.html doesn't exist");
             }
 		}
 	}
@@ -43,8 +53,14 @@
 		private $conn;
 		public function __construct(){
 			$this->conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-			if (mysqli_connect_errno()){
-				echo "Failed to connect to MySQL: " . mysqli_connect_error();die;
+			if (!$this->conn){
+				if(DEBUG){
+					echo "Failed to connect to MySQL: " . mysqli_connect_error();
+					die;
+				}else{
+					error500();
+				}
+				error_log("Failed to connect to MySQL: " . mysqli_connect_error());
 			}
 			mysqli_set_charset($this->conn,"utf8");
 		}

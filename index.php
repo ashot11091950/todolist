@@ -3,5 +3,7 @@
 	if(DEBUG){
 		ini_set('display_errors', true);
 		error_reporting(E_ALL);
+	}else{
+		ini_set('display_errors', false);
 	}
-	include 'startup.php';
+	include 'vendor/startup.php';

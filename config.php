@@ -4,4 +4,4 @@
 	define('DB_HOST', 'localhost');
 	define('DB_PASSWORD', 'password123');
 	define('DB_DATABASE', 'todo_bs');
-?>
+	define('ERR500', 'error500');

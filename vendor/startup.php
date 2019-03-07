@@ -1,13 +1,13 @@
 <?php
+	//include functions 
+	include 'functions.php';
+
 	//include classes
 	include 'classes.php';
 	
 	// get routes
 	$route = new Route;
 	include 'routes.php';
-
-	//include functions 
-	include 'functions.php';
 
 	//sart controllers
 	$url = '/' . $_GET['route'];
